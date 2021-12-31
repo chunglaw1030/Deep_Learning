@@ -1,9 +1,10 @@
 import tensorflow as tf
 from tensorflow.keras import Model, Sequential, layers
 from models.effnet_encoder import EffnetEncoder
+from typing import Tuple, List
 
 class MTLFramework:
-    def __init__(self, encoder: Model, input_shape: tuple[int]) -> None:
+    def __init__(self, encoder: Model, input_shape: Tuple[int]) -> None:
         self.encoder = encoder
         self.input_shape = input_shape
         self.outputs = []
@@ -12,7 +13,7 @@ class MTLFramework:
         self.skips = self.get_encoder_features()
         self.encoder_output = self.skips[-1]
         
-    def get_encoder_features(self) -> list[tf.Tensor]:
+    def get_encoder_features(self) -> List[tf.Tensor]:
         ''' Get inter and end feature map outputs from encoder '''
         inputs = tf.keras.layers.Input(shape=self.input_shape, name='input')
         self.inputs.append(inputs)

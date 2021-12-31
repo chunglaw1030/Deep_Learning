@@ -2,6 +2,7 @@ import numpy as np
 import tensorflow as tf
 import random
 import matplotlib.pyplot as plt
+from typing import Tuple, List
 
 def fix_bbox(bbox: np.array) -> np.array:
     ''' Reformats the bounding box inputs into correct shape for TensorFlow display function '''
@@ -10,7 +11,7 @@ def fix_bbox(bbox: np.array) -> np.array:
     temp[2], temp[3] = bbox[3], bbox[2]
     return temp
 
-def data_augmentation(input: tf.Tensor, mask: tf.Tensor) -> tuple[tf.Tensor]:
+def data_augmentation(input: tf.Tensor, mask: tf.Tensor) -> Tuple[tf.Tensor]:
     ''' Applies random flip or rotation to input and mask '''
     if np.random.rand() > 0.5:
         if np.random.rand() > 0.5:
@@ -22,7 +23,7 @@ def data_augmentation(input: tf.Tensor, mask: tf.Tensor) -> tuple[tf.Tensor]:
 
     return (input, mask)
 
-def get_randomised_data(x_data: np.array, y_data_1: np.array, y_data_2: np.array) -> tuple[np.array]:
+def get_randomised_data(x_data: np.array, y_data_1: np.array, y_data_2: np.array) -> Tuple[np.array]:
     ''' Performs consistent shuffling on input arrays '''
     dataset_size = len(x_data)
     dataset_indices = list(range(dataset_size))

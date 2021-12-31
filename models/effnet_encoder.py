@@ -1,9 +1,10 @@
 from tensorflow.keras import Model
 from tensorflow.keras.applications import efficientnet
+from typing import Tuple, List
 
 class EffnetEncoder:
     ''' EfficientNet based encoder '''
-    def __init__(self, base_name: str, input_shape: tuple[int]) -> None:
+    def __init__(self, base_name: str, input_shape: Tuple[int]) -> None:
         self.encoder_name = f'Effnet{base_name}Encoder'
         self.input_shape = input_shape
         self.layer_names = [
